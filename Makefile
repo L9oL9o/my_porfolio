@@ -2,7 +2,7 @@ mig:
 	python manage.py makemigrations
 	python manage.py migrate
 
-rq:
+fr:
 	pip freeze -> requirements.txt
 
 run:

@@ -1,7 +1,7 @@
 from django.urls import path
 
-from cv_app.views import ForRun
+from cv_app.views import AboutView
 
 urlpatterns = [
-    path('', ForRun.as_view(), name='index')
+    path('', AboutView.as_view(), name='index')
 ]
