@@ -7,3 +7,6 @@ fr:
 
 run:
 	python manage.py runserver
+
+sur:
+	python manage.py createsuperuser

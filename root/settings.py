@@ -61,23 +61,23 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'root.wsgi.application'
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'portfolio.sqlite3',
-    }
-}
-
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'my_portfolio_db',
-#         'USER': 'l9o',
-#         'PASSWORD': 9009,
-#         'HOST': 'localhost',
-#         'PORT': 5432,
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'portfolio.sqlite3',
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'my_portfolio_db',
+        'USER': 'l9o',
+        'PASSWORD': 9009,
+        'HOST': 'localhost',
+        'PORT': 5432,
+    }
+}
 
 AUTH_PASSWORD_VALIDATORS = [
     {
