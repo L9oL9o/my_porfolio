@@ -1,0 +1,1 @@
+Templates in this folder "template_part", doesn't work, it created in order to share with teammates with them to solve existing problem.
