@@ -32,7 +32,7 @@ class About(Model):
 
     class Meta:
         verbose_name = "About"
-        verbose_name_plural = "Abouts"
+        verbose_name_plural = "About Model"
 
 
 class Fact(Model):
@@ -45,7 +45,7 @@ class Fact(Model):
 
     class Meta:
         verbose_name = "Fact"
-        verbose_name_plural = "Facts"
+        verbose_name_plural = "Fact Model"
 
 
 class Skills(Model):
@@ -57,7 +57,7 @@ class Skills(Model):
 
     class Meta:
         verbose_name = "Skill"
-        verbose_name_plural = "Skills"
+        verbose_name_plural = "Skill Model"
 
 
 class Resume(Model):
@@ -74,7 +74,7 @@ class Portfolio(Model):
 
     class Meta:
         verbose_name = "Portfolio"
-        verbose_name_plural = "Portfolios"
+        verbose_name_plural = "Portfolio Model"
 
 
 class Service(Model):
@@ -87,7 +87,7 @@ class Service(Model):
 
     class Meta:
         verbose_name = "Service"
-        verbose_name_plural = "Services"
+        verbose_name_plural = "Service Model"
 
 
 class Testimonials(Model):
@@ -102,7 +102,7 @@ class Testimonials(Model):
 
     class Meta:
         verbose_name = "Testimonial"
-        verbose_name_plural = "Testimonials"
+        verbose_name_plural = "Testimonial Model"
 
 
 class ContactMessage(Model):
@@ -116,4 +116,4 @@ class ContactMessage(Model):
 
     class Meta:
         verbose_name = "Contact"
-        verbose_name_plural = "Contacts"
+        verbose_name_plural = "Contact Model"

@@ -1,5 +1,6 @@
 from django.views.generic import ListView
 from cv_app.static_models.static_models import *
+from cv_app.static_models.partition_models import *
 from cv_app.models import *
 
 
@@ -22,5 +23,15 @@ class GetObjectsView(ListView):
         context['about_me_items'] = AboutMe.objects.all()
         context['contact_me_items'] = ContactMe.objects.all()
         context['left_side_items'] = LeftSide.objects.all()
+
+        # STATIC PARTITION MODELS
+        context['about_part_items'] = AboutPart.objects.all()
+        context['fact_part_items'] = FactPart.objects.all()
+        context['skill_part_items'] = SkillPart.objects.all()
+        context['resume_part_items'] = ResumePart.objects.all()
+        context['portfolio_part_items'] = PortfolioPart.objects.all()
+        context['service_part_items'] = ServicePart.objects.all()
+        context['testimonial_part_items'] = TestimonialPart.objects.all()
+        context['contact_part_items'] = ContactPart.objects.all()
 
         return context

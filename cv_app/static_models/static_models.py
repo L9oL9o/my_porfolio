@@ -18,6 +18,13 @@ class AboutMe(Model):
     about_avatar_img = ImageField(upload_to='static/images/static_images/about_avatar_img')
     background_img = ImageField(upload_to='static/images/static_images/background_img')
 
+    def __str__(self):
+        return f" {self.my_name} {self.my_second_name} {self.my_age}"
+
+    class Meta:
+        # verbose_name = "About Me"
+        verbose_name_plural = "About Me Static"
+
 
 class ContactMe(Model):
     location_name = CharField(max_length=200)
@@ -29,13 +36,13 @@ class ContactMe(Model):
         return self.location_name
 
     class Meta:
-        verbose_name = "Contact Me"
+        verbose_name_plural = "Contact Me Static"
 
 
 class LeftSide(Model):
     #   Left side part
     left_side_name = CharField(max_length=55)
-    left_side_img = ImageField(upload_to='static/images/static_images/left_side_images/')
+    left_side_my_img = ImageField(upload_to='static/images/static_images/left_side_images/')
     twitter_link = URLField(null=True, blank=True)
     facebook_link = URLField(null=True, blank=True)
     instagram_link = URLField(null=True, blank=True)
@@ -46,5 +53,5 @@ class LeftSide(Model):
         return self.left_side_name
 
     class Meta:
-        verbose_name = "Static"
-        verbose_name_plural = "Statics"
+        # verbose_name = "Static"
+        verbose_name_plural = "Left Side Static"

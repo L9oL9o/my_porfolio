@@ -1,4 +1,11 @@
 from cv_app.static_models.static_models import BaseModel
+from django.db.models import *
+
+
+# class BaseModel(Model):
+#     part_name = CharField(max_length=255, null=True, blank=True)
+#     part_title = CharField(max_length=255, null=True, blank=True)
+#
 
 
 class AboutPart(BaseModel):
@@ -8,7 +15,7 @@ class AboutPart(BaseModel):
 
     class Meta:
         verbose_name = "About"
-        verbose_name_plural = "Abouts"
+        verbose_name_plural = "About Static Part"
 
 
 class FactPart(BaseModel):
@@ -18,7 +25,7 @@ class FactPart(BaseModel):
 
     class Meta:
         verbose_name = "Fact"
-        verbose_name_plural = "Facts"
+        verbose_name_plural = "Fact Static Part"
 
 
 class SkillPart(BaseModel):
@@ -28,7 +35,7 @@ class SkillPart(BaseModel):
 
     class Meta:
         verbose_name = "Skill"
-        verbose_name_plural = "Skills"
+        verbose_name_plural = "Skill Static Part"
 
 
 class ResumePart(BaseModel):
@@ -38,7 +45,7 @@ class ResumePart(BaseModel):
 
     class Meta:
         verbose_name = "Resume"
-        verbose_name_plural = "Resumes"
+        verbose_name_plural = "Resume Static Part"
 
 
 class PortfolioPart(BaseModel):
@@ -48,7 +55,7 @@ class PortfolioPart(BaseModel):
 
     class Meta:
         verbose_name = "Portfolio"
-        verbose_name_plural = "Portfolios"
+        verbose_name_plural = "Portfolio Static Part"
 
 
 class ServicePart(BaseModel):
@@ -58,7 +65,7 @@ class ServicePart(BaseModel):
 
     class Meta:
         verbose_name = "Service"
-        verbose_name_plural = "Services"
+        verbose_name_plural = "Service Static Part"
 
 
 class TestimonialPart(BaseModel):
@@ -68,7 +75,7 @@ class TestimonialPart(BaseModel):
 
     class Meta:
         verbose_name = "Testimonial"
-        verbose_name_plural = "Testimonials"
+        verbose_name_plural = "Testimonial Static Part"
 
 
 class ContactPart(BaseModel):
@@ -78,4 +85,4 @@ class ContactPart(BaseModel):
 
     class Meta:
         verbose_name = "Contact"
-        verbose_name_plural = "Contacts"
+        verbose_name_plural = "Contact Static Part"
