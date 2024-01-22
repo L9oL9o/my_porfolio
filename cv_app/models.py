@@ -1,19 +1,9 @@
-from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db.models import *
 
 
 class About(Model):
-    part_name = CharField(max_length=255)
-    part_title = CharField(max_length=255)
-    PHONE_CHOICES = [
-        ("Uzb ", "+998"),
-        ("Usa", "+1"),
-        ("Ru", "+7"),
-        ("Eng", "+44"),
-        ("Fr", "+33"),
-        ("Ca", "+1"),
-    ]
     DEGREE_CHOICES = [
+        ("No degree", "No degree"),
         ("Bachelor's", "Bachelor's"),
         ("Master's", "Master's"),
         ("Doctor's", "Doctor's"),
@@ -26,50 +16,104 @@ class About(Model):
         ("Other", "Other"),
     ]
 
-    img = ImageField(upload_to='static/images/about')
-    job_name = CharField(max_length=255)
-    job_about = CharField(max_length=255)
-    birth_date = DateField()
+    job_title = CharField(max_length=255)
+    job_decs = CharField(max_length=255)
     website = URLField()
-    phone_code = CharField(max_length=55, choices=PHONE_CHOICES)
+    phone_code = CharField(max_length=55)
     phone_number = CharField(max_length=55)
-    city = CharField(max_length=255)
-    age = IntegerField(default=1, validators=[MinValueValidator(1), MaxValueValidator(150)])
+    city_name = CharField(max_length=255)
     degree = CharField(max_length=255, choices=DEGREE_CHOICES)
     email_field = EmailField()
     job_type = CharField(max_length=255, choices=JOB_TYPE)
     about_job = CharField(max_length=255)
 
     def __str__(self):
-        return self.job_name
+        return self.job_title
 
     class Meta:
         verbose_name = "About"
+        verbose_name_plural = "Abouts"
 
 
 class Fact(Model):
-    part_name = CharField(max_length=255)
-    part_title = CharField(max_length=255)
-    img = ImageField(upload_to='images/fact')
-    count = IntegerField()
-    short_text = CharField(max_length=255)
+    fact_cont = IntegerField()
+    fact_short_text = CharField(max_length=255)
+    fact_logo = CharField(max_length=255)
 
     def __str__(self):
-        return self.part_name
+        return self.fact_short_text
 
     class Meta:
         verbose_name = "Fact"
+        verbose_name_plural = "Facts"
 
 
+class Skills(Model):
+    skill_name = CharField(max_length=55)
+    skill_percent = IntegerField()
 
-# class Skills(Model):
-#     part_name = CharField(max_length=255)
-#     part_title = CharField(max_length=255)
-#
-#     skill_name = CharField(max_length=255)
-#     skill_duration = DateTimeField(null=True, blank=True)
-#     skill_place = CharField(max_length=255)
-#     skill_detail = JSONField()
+    def __str__(self):
+        return self.skill_name
+
+    class Meta:
+        verbose_name = "Skill"
+        verbose_name_plural = "Skills"
 
 
+class Resume(Model):
+    pass
 
+
+class Portfolio(Model):
+    project_name = CharField(max_length=55, null=True, blank=True)
+    portfolio_link = URLField(blank=True, null=True)
+    img = ImageField(upload_to='static/images/portfolio')
+
+    def __str__(self):
+        return self.project_name
+
+    class Meta:
+        verbose_name = "Portfolio"
+        verbose_name_plural = "Portfolios"
+
+
+class Service(Model):
+    service_name = CharField(max_length=255)
+    service_desc = CharField(max_length=255)
+    service_logo = CharField(max_length=255)
+
+    def __str__(self):
+        return self.service_name
+
+    class Meta:
+        verbose_name = "Service"
+        verbose_name_plural = "Services"
+
+
+class Testimonials(Model):
+    user_comment = CharField(max_length=255)
+    user_img = ImageField(upload_to="static/images/testimonials")
+    user_name = CharField(max_length=55)
+    user_second_name = CharField(max_length=55)
+    user_job_name = CharField(max_length=55)
+
+    def __str__(self):
+        return f" {self.user_name} {self.user_second_name}"
+
+    class Meta:
+        verbose_name = "Testimonial"
+        verbose_name_plural = "Testimonials"
+
+
+class ContactMessage(Model):
+    name = CharField(max_length=255)
+    email = EmailField()
+    subject = CharField(max_length=255)
+    message = TextField()
+
+    def __str__(self):
+        return f"Name {self.name} Email {self.email}"
+
+    class Meta:
+        verbose_name = "Contact"
+        verbose_name_plural = "Contacts"
