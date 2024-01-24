@@ -26,6 +26,10 @@ class SkillsAdmin(ModelAdmin):
 #     pass
 
 
+class CategoryPortfolioAdmin(ModelAdmin):
+    list_display = ('title', 'slug')
+
+
 class PortfolioAdmin(ModelAdmin):
     list_display = ('project_name',)
 
@@ -41,6 +45,7 @@ class TestimonialsAdmin(ModelAdmin):
 admin.site.register(About, AboutAdmin),
 admin.site.register(Fact, FactAdmin),
 admin.site.register(Skills, SkillsAdmin),
+admin.site.register(CategoryPortfolio, CategoryPortfolioAdmin),
 admin.site.register(Portfolio, PortfolioAdmin),
 admin.site.register(Service, ServiceAdmin),
 admin.site.register(Testimonials, TestimonialsAdmin),

@@ -15,6 +15,7 @@ class GetObjectsView(ListView):
         context['facts_item'] = Fact.objects.all()
         context['skills_item'] = Skills.objects.all()
         context['resume_items'] = Resume.objects.all()
+        context['category_portfolio_items'] = CategoryPortfolio.objects.all()
         context['portfolio_items'] = Portfolio.objects.all()
         context['service_items'] = Service.objects.all()
         context['testimonials_item'] = Testimonials.objects.all()

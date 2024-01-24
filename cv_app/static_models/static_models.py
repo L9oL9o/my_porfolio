@@ -55,3 +55,6 @@ class LeftSide(Model):
     class Meta:
         # verbose_name = "Static"
         verbose_name_plural = "Left Side Static"
+
+
+
