@@ -47,6 +47,16 @@ class GetObjectsView(ListView):
 def get_project_details(request, slug):
     get_id = Portfolio.objects.get(slug=slug)
     context = {
-        'portfolio_item': Project.objects.filter(portfolio=get_id.id)
+        'project_details_item': Project.objects.filter(portfolio=get_id.id)
     }
     return render(request, 'portfolio-details.html', context)
+
+
+def get_project_detail_images(request, slug):
+    get_id = Portfolio.objects.get(slug=slug)
+    context = {
+        'project_details_images_item': ProjectImages.objects.filter(slug=get_id.id)
+    }
+    return render(request, 'portfolio-details.html', context)
+
+

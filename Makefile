@@ -10,3 +10,9 @@ run:
 
 sur:
 	python manage.py createsuperuser
+
+git:
+	git status
+	git add .
+	git commit
+	git push

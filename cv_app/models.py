@@ -67,7 +67,7 @@ class Summary(Model):
         return self.part
 
     class Meta:
-        verbose_name_plural = "Summary"
+        verbose_name_plural = "Summary Model"
 
 
 class Education(Model):
@@ -81,7 +81,7 @@ class Education(Model):
         return self.name
 
     class Meta:
-        verbose_name_plural = "Education"
+        verbose_name_plural = "Education Model"
 
 
 class Experience(Model):
@@ -95,7 +95,7 @@ class Experience(Model):
         return self.name
 
     class Meta:
-        verbose_name_plural = "Experience"
+        verbose_name_plural = "Experience Model"
 
 
 class CategoryPortfolio(Model):
@@ -106,7 +106,7 @@ class CategoryPortfolio(Model):
         return self.title
 
     class Meta:
-        verbose_name_plural = "Portfolio Category"
+        verbose_name_plural = "Portfolio Category Model"
 
 
 class Portfolio(Model):
@@ -125,22 +125,29 @@ class Portfolio(Model):
 class Project(Model):
     name = CharField(max_length=55, null=True, blank=True)
     client = CharField(max_length=55, null=True, blank=True)
-    date = DateTimeField(null=True, blank=True)
+    date = DateField(null=True, blank=True)
     url = URLField(blank=True, null=True)
     title = CharField(max_length=255, null=True, blank=True)
     description = TextField(null=True, blank=True)
     portfolio = ForeignKey(Portfolio, on_delete=CASCADE, null=True, blank=True)
 
     def __str__(self):
-        return f'{self.title} {self.client}'
+        return f'{self.name} {self.title} {self.client}'
 
     class Meta:
-        verbose_name_plural = "Project"
+        verbose_name_plural = "Project Detail Model"
 
 
 class ProjectImages(Model):
-    project_id = ForeignKey(Portfolio, CASCADE, related_name='project_image')
-    image = ImageField(upload_to=f"images/project_detail_images/")
+    slug = ForeignKey(Portfolio, on_delete=CASCADE, null=True, blank=True)
+    name = CharField(max_length=55, null=True, blank=True)
+    image = ImageField(upload_to="static/images/project_detail_images/", null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.name} "
+
+    class Meta:
+        verbose_name_plural = "Project Images Model"
 
 
 class Service(Model):

@@ -38,7 +38,12 @@ class PortfolioAdmin(ModelAdmin):
 
 
 class ProjectImageAdmin(ModelAdmin):
-    list_display = ('project_id', 'image')
+    list_display = ('name',)
+
+    def display_image(self, obj):
+        return obj.image.url if obj.image else None
+
+    display_image.short_description = 'Image'
 
 
 class ServiceAdmin(ModelAdmin):
@@ -47,6 +52,7 @@ class ServiceAdmin(ModelAdmin):
 
 class TestimonialsAdmin(ModelAdmin):
     list_display = ('user_name', 'user_second_name', 'user_job_name', 'user_comment')
+
 
 
 admin.site.register(About, AboutAdmin),
@@ -58,7 +64,11 @@ admin.site.register(Experience, ExperienceAdmin),
 admin.site.register(CategoryPortfolio, CategoryPortfolioAdmin),
 admin.site.register(Portfolio, PortfolioAdmin),
 admin.site.register(Service, ServiceAdmin),
-admin.site.register(Testimonials, TestimonialsAdmin),
+admin.site.register(Project, ProjectImageAdmin),
+admin.site.register(ProjectImages, ProjectImageAdmin),
+
+
+# admin.site.register(Testimonials, TestimonialsAdmin),
 
 
 # ~~~~~~~~~~~~~~~~~ INFO MODELS ~~~~~~~~~~~~~~~~~~~~~~~

@@ -24,10 +24,12 @@
                 {% endfor %}
                 {% for i in about_me_items %}
                     <h1 class="text-light">
-                    <a href="index.html">
-                        <h1>{{ i.name }}</h1>
-                        <h1>{{ i.second_name }}</h1>
-                    </a>
+                    {# <a href="index.html"> #}
+                    <h1 style="color: whitesmoke">
+                        {{ i.name }}
+                    </h1>
+                    <h1 style="color: whitesmoke">{{ i.second_name }}</h1>
+                    {# </a> #}
                 {% endfor %}
 
                 </h1>
@@ -63,7 +65,7 @@
                 </ul>
             </nav><!-- .nav-menu -->
         </div>
-    </header> 
+    </header>
     <!-- End Header -->
 
     <!-- ======= Hero Section ======= -->
@@ -321,7 +323,7 @@
                                 </ul>
                             </div>
                         {% endfor %}
-                    
+
                         {# EDUCATION PART  #}
                         {% for i in resume_block_items %}
                             <h3 class="resume-title"> {{ i.education }} </h3>
@@ -343,7 +345,7 @@
                             </div>
                         {% endfor %}
                     </div>
-                
+
                     <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
                         {% for i in resume_block_items %}
                             <h3 class="resume-title">{{ i.experience }}</h3>
