@@ -4,5 +4,5 @@ from cv_app.views import *
 
 urlpatterns = [
     path('', GetObjectsView.as_view(), name='index'),
-    # path('<int:pk>/')
+    path('detail/project/<str:slug>/', get_project_details, name='detail')
 ]

@@ -20,13 +20,13 @@
         <div class="d-flex flex-column">
             <div class="profile">
                 {% for i in left_side_items %}
-                    <img src="{{ i.left_side_my_img }}" alt="background image" class="img-fluid rounded-circle">
+                    <img src="{{ i.left_side_my_img.url }}" alt="background image" class="img-fluid rounded-circle">
                 {% endfor %}
                 {% for i in about_me_items %}
                     <h1 class="text-light">
                     <a href="index.html">
-                        <h1>{{ i.my_name }}</h1>
-                        <h1>{{ i.my_second_name }}</h1>
+                        <h1>{{ i.name }}</h1>
+                        <h1>{{ i.second_name }}</h1>
                     </a>
                 {% endfor %}
 
@@ -70,12 +70,12 @@
     <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
         <div class="hero-container" data-aos="fade-in">
             {% for i in about_me_items %}
-                <h1>{{ i.my_name }}</h1>
-                <h1>{{ i.my_second_name }}</h1>
+                <h1>{{ i.name }}</h1>
+                <h1>{{ i.second_name }}</h1>
             {% endfor %}
             {% for i in about_items %}
-                <p>
-                    <span class="typed" data-typed-items="{{ i.part_title }}"></span>
+                <p> I work with
+                    <span class="typed" data-typed-items="{{ i.job_desc }}"></span>
                 </p>
             {% endfor %}
         </div>
@@ -90,15 +90,15 @@
 
                 <div class="section-title">
                     {% for i in about_part_items %}
-                        <h2>{{ i.part_name }}</h2>
-                        <p>{{ i.part_title }}</p>
+                        <h2>{{ i.name }}</h2>
+                        <p>{{ i.title }}</p>
                     {% endfor %}
                 </div>
 
                 <div class="row">
                     <div class="col-lg-4" data-aos="fade-right">
                         {% for i in about_me_items %}
-                            <img src="{{ i.about_avatar_img }}" class="img-fluid" alt="">
+                            <img src="{{ i.about_part_img.url }}" class="img-fluid" alt="">
                         {% endfor %}
                     </div>
 
@@ -120,33 +120,34 @@
                                             <i class="bi bi-chevron-right"></i>
                                             <strong>Birthday:</strong>
                                             <span>
-                                                        {{ i.my_birthday }}
+                                                        {{ i.birthday }}
                                                 </span>
                                         </li>
                                     {% endfor %}
 
-                                    {% for i in about_items %}
+                                    {% for i in contact_me_items %}
+
                                         <li>
                                             <i class="bi bi-chevron-right"></i> <strong>Website:</strong>
                                             <span>
-                                                        <a href="{{ i.website }}" target="_blank">Check GITHUB</a>
-                                                </span>
+                                                            <a href="{{ i.website }}" target="_blank">Check GITHUB</a>
+                                                    </span>
                                         </li>
 
                                         <li>
                                             <i class="bi bi-chevron-right"></i>
                                             <strong>Phone:</strong>
                                             <span>
-                                                    {{ i.phone_code }} {{ i.phone_number }}
-                                                </span>
+                                                {{ i.country_code }} {{ i.phone_number }}
+                                            </span>
                                         </li>
 
-                                        <li><i class="bi bi-chevron-right"></i> <strong>City:</strong>
+                                        <li>
+                                            <i class="bi bi-chevron-right"></i>
+                                            <strong>City:</strong>
                                             <span>
-                                                        {% for i in about_items %}
-                                                            {{ i.city_name }}
-                                                        {% endfor %}
-                                                    </span>
+                                                {{ i.city }}
+                                            </span>
                                         </li>
                                     {% endfor %}
                                 </ul>
@@ -160,7 +161,7 @@
                                             <i class="bi bi-chevron-right"></i>
                                             <strong>Age:</strong>
                                             <span>
-                                                    {{ i.my_age }}
+                                                    {{ i.age }}
                                                 </span>
                                         </li>
                                     {% endfor %}
@@ -176,18 +177,20 @@
 
                                         <li>
                                             <i class="bi bi-chevron-right"></i>
-                                            <strong>PhEmailone:</strong>
+                                            <strong>EMAIL:</strong>
                                             <span>
-                                                    {{ i.email_field }}
-                                                </span>
+                                                {% for i in contact_me_items %}
+                                                    {{ i.email }}
+                                                {% endfor %}
+                                            </span>
                                         </li>
 
                                         <li>
                                             <i class="bi bi-chevron-right"></i>
-                                            <strong>Freelance:</strong>
+                                            <strong>Job:</strong>
                                             <span>
-                                                    {{ i.job_type }}
-                                                </span>
+                                                {{ i.job_type }}
+                                            </span>
                                         </li>
                                     {% endfor %}
                                 </ul>
@@ -213,10 +216,10 @@
                 <div class="section-title">
                     {% for i in fact_part_items %}
                         <h2>
-                            {{ i.part_name }}
+                            {{ i.name }}
                         </h2>
                         <p>
-                            {{ i.part_title }}
+                            {{ i.title }}
                         </p>
                     {% endfor %}
                 </div>
@@ -226,7 +229,7 @@
                         <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up">
                             <div class="count-box">
                                 <i class="{{ i.fact_logo }}"></i>
-                                <span data-purecounter-start="0" data-purecounter-end="{{ i.fact_cont }}"
+                                <span data-purecounter-start="0" data-purecounter-end="{{ i.fact_count }}"
                                       data-purecounter-duration="1" class="purecounter">
                                 </span>
                                 <p>
@@ -251,9 +254,9 @@
 
                 <div class="section-title">
                     {% for i in skill_part_items %}
-                        <h2>{{ i.part_name }}</h2>
+                        <h2>{{ i.name }}</h2>
                         <p>
-                            {{ i.part_title }}
+                            {{ i.title }}
                         </p>
                     {% endfor %}
                 </div>
@@ -264,9 +267,9 @@
                         {% for i in skills_item %}
                             {#                            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">#}
                             <div class="progress">
-                                <span class="skill">{{ i.skill_name }}<i class="val">{{ i.skill_percent }}%</i></span>
+                                <span class="skill">{{ i.name }}<i class="val">{{ i.percent }}%</i></span>
                                 <div class="progress-bar-wrap">
-                                    <div class="progress-bar" role="progressbar" aria-valuenow="{{ i.skill_percent }}"
+                                    <div class="progress-bar" role="progressbar" aria-valuenow="{{ i.percent }}"
                                          aria-valuemin="0"
                                          aria-valuemax="9009"></div>
                                 </div>
@@ -294,86 +297,74 @@
 
                 <div class="section-title">
                     {% for i in resume_part_items %}
-                        <h2>{{ i.part_name }}</h2>
-                        <p>{{ i.part_title }}</p>
+                        <h2>{{ i.name }}</h2>
+                        <p>{{ i.title }}</p>
                     {% endfor %}
                 </div>
 
+                {# SUMMARY PART #}
                 <div class="row">
                     <div class="col-lg-6" data-aos="fade-up">
-                        <h3 class="resume-title">Sumary</h3>
-                        <div class="resume-item pb-0">
-                            <h4>Alex Smith</h4>
-                            <p><em>Innovative and deadline-driven Graphic Designer with 3+ years of experience designing
-                                and
-                                developing user-centered digital/print marketing material from initial concept to final,
-                                polished deliverable.</em></p>
-                            <ul>
-                                <li>Portland par 127,Orlando, FL</li>
-                                <li>(123) 456-7891</li>
-                                <li>alice.barkley@example.com</li>
-                            </ul>
-                        </div>
-
-                        <h3 class="resume-title">Education</h3>
-                        <div class="resume-item">
-                            <h4>Master of Fine Arts &amp; Graphic Design</h4>
-                            <h5>2015 - 2016</h5>
-                            <p><em>Rochester Institute of Technology, Rochester, NY</em></p>
-                            <p>Qui deserunt veniam. Et sed aliquam labore tempore sed quisquam iusto autem sit. Ea vero
-                                voluptatum qui ut dignissimos deleniti nerada porti sand markend</p>
-                        </div>
-                        <div class="resume-item">
-                            <h4>Bachelor of Fine Arts &amp; Graphic Design</h4>
-                            <h5>2010 - 2014</h5>
-                            <p><em>Rochester Institute of Technology, Rochester, NY</em></p>
-                            <p>Quia nobis sequi est occaecati aut. Repudiandae et iusto quae reiciendis et quis Eius vel
-                                ratione eius unde vitae rerum voluptates asperiores voluptatem Earum molestiae
-                                consequatur
-                                neque etlon sader mart dila</p>
-                        </div>
+                        {% for i in summary_items %}
+                            <h3 class="resume-title">{{ i.part }}</h3>
+                            <div class="resume-item pb-0">
+                                <h4>{{ i.name.name }} {{ i.name.second_name }}</h4>
+                                <p>
+                                    <em>
+                                        {{ i.desc }}
+                                    </em>
+                                </p>
+                                <ul>
+                                    <li>{{ i.place.city }}</li>
+                                    <li>{{ i.place.country_code }}{{ i.place.phone_number }}</li>
+                                    <li>{{ i.email.email }}</li>
+                                </ul>
+                            </div>
+                        {% endfor %}
+                    
+                        {# EDUCATION PART  #}
+                        {% for i in resume_block_items %}
+                            <h3 class="resume-title"> {{ i.education }} </h3>
+                        {% endfor %}
+                        {% for i in education_items %}
+                            <div class="resume-item">
+                                <h4>{{ i.name }}</h4>
+                                {% if i.end_year != None %}
+                                    <h5>{{ i.year }} - {{ i.end_year }}</h5>
+                                {% elif i.end_year == None %}
+                                    <h5>{{ i.year }} - Present</h5>
+                                {% endif %}
+                                <p>
+                                    <em>{{ i.place_name }}</em>
+                                </p>
+                                <p>
+                                    {{ i.desc }}
+                                </p>
+                            </div>
+                        {% endfor %}
                     </div>
+                
                     <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-                        <h3 class="resume-title">Professional Experience</h3>
-                        <div class="resume-item">
-                            <h4>Senior graphic design specialist</h4>
-                            <h5>2019 - Present</h5>
-                            <p><em>Experion, New York, NY </em></p>
-                            <ul>
-                                <li>Lead in the design, development, and implementation of the graphic, layout, and
-                                    production communication materials
-                                </li>
-                                <li>Delegate tasks to the 7 members of the design team and provide counsel on all
-                                    aspects of
-                                    the project.
-                                </li>
-                                <li>Supervise the assessment of all graphic materials in order to ensure quality and
-                                    accuracy of the design
-                                </li>
-                                <li>Oversee the efficient use of production project budgets ranging from $2,000 -
-                                    $25,000
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="resume-item">
-                            <h4>Graphic design specialist</h4>
-                            <h5>2017 - 2018</h5>
-                            <p><em>Stepping Stone Advertising, New York, NY</em></p>
-                            <ul>
-                                <li>Developed numerous marketing programs (logos, brochures,infographics, presentations,
-                                    and
-                                    advertisements).
-                                </li>
-                                <li>Managed up to 5 projects or tasks at a given time while under pressure</li>
-                                <li>Recommended and consulted with clients on the most appropriate graphic design</li>
-                                <li>Created 4+ design presentations and proposals a month for clients and account
-                                    managers
-                                </li>
-                            </ul>
-                        </div>
+                        {% for i in resume_block_items %}
+                            <h3 class="resume-title">{{ i.experience }}</h3>
+                        {% endfor %}
+                        {% for i in experience_items %}
+                            <div class="resume-item">
+                                <h4>{{ i.name }}</h4>
+                                {% if i.end_year != None %}
+                                    <h5>{{ i.start_year }} - {{ i.end_year }}</h5>
+                                {% elif i.end_year == None %}
+                                    <h5>{{ i.start_year }} - Present</h5>
+                                {% endif %}
+                                <p><em>{{ i.place_name }}</em></p>
+                                <ul>
+                                    {{ i.experience_desc | safe }}
+                                </ul>
+                            </div>
+                        {% endfor %}
                     </div>
                 </div>
-
+                {# SUMMARY PART END #}
             </div>
         </section>
         <!-- End Resume Section -->
@@ -384,8 +375,8 @@
 
                 <div class="section-title">
                     {% for i in portfolio_part_items %}
-                        <h2>{{ i.part_name }}</h2>
-                        <p>{{ i.part_title }}</p>
+                        <h2>{{ i.name }}</h2>
+                        <p>{{ i.title }}</p>
                     {% endfor %}
                 </div>
 
@@ -402,117 +393,21 @@
 
                 <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="100">
                     {% for i in portfolio_items %}
-                        <div class="col-lg-4 col-md-6 portfolio-item filter-{{ i.portfolio_category.slug }}">
+                        <div class="col-lg-4 col-md-6 portfolio-item filter-{{ i.category.slug }}">
                             <div class="portfolio-wrap">
-                                <img src="{{ i.portfolio_img }}" class="img-fluid" alt="">
+                                <img src="{{ i.img.url }}" class="img-fluid" alt="">
                                 <div class="portfolio-links">
-                                    <a href="{{ i.portfolio_img }}"
+                                    <a href="{{ i.img.url }}"
                                        data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 1">
                                         <i class="bx bx-plus"></i>
                                     </a>
-                                    <a href="{{ i.i.portfolio_category.slug }}" title="More Details" target="_blank"><i
-                                            class="bx bx-link"></i></a>
+                                    <a href="{% url 'detail' i.slug %}" title="More Details" target="_blank">
+                                        <i class="bx bx-link"> </i>
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     {% endfor %}
-
-                    {#                    <div class="col-lg-4 col-md-6 portfolio-item filter-web">#}
-                    {#                        <div class="portfolio-wrap">#}
-                    {#                            <img src="{% static 'assets/img/portfolio/portfolio-2.jpg' %}" class="img-fluid" alt="">#}
-                    {#                            <div class="portfolio-links">#}
-                    {#                                <a href="{% static 'assets/img/portfolio/portfolio-2.jpg' %}"#}
-                    {#                                   data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"><i#}
-                    {#                                        class="bx bx-plus"></i></a>#}
-                    {#                                <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>#}
-                    {#                            </div>#}
-                    {#                        </div>#}
-                    {#                    </div>#}
-                    {##}
-                    {#                    <div class="col-lg-4 col-md-6 portfolio-item filter-app">#}
-                    {#                        <div class="portfolio-wrap">#}
-                    {#                            <img src="{% static 'assets/img/portfolio/portfolio-3.jpg' %}" class="img-fluid" alt="">#}
-                    {#                            <div class="portfolio-links">#}
-                    {#                                <a href="{% static 'assets/img/portfolio/portfolio-3.jpg' %}"#}
-                    {#                                   data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 2"><i#}
-                    {#                                        class="bx bx-plus"></i></a>#}
-                    {#                                <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>#}
-                    {#                            </div>#}
-                    {#                        </div>#}
-                    {#                    </div>#}
-                    {##}
-                    {#                    <div class="col-lg-4 col-md-6 portfolio-item filter-card">#}
-                    {#                        <div class="portfolio-wrap">#}
-                    {#                            <img src="{% static 'assets/img/portfolio/portfolio-4.jpg' %}" class="img-fluid" alt="">#}
-                    {#                            <div class="portfolio-links">#}
-                    {#                                <a href="{% static 'assets/img/portfolio/portfolio-4.jpg' %}"#}
-                    {#                                   data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 2"><i#}
-                    {#                                        class="bx bx-plus"></i></a>#}
-                    {#                                <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>#}
-                    {#                            </div>#}
-                    {#                        </div>#}
-                    {#                    </div>#}
-                    {##}
-                    {#                    <div class="col-lg-4 col-md-6 portfolio-item filter-web">#}
-                    {#                        <div class="portfolio-wrap">#}
-                    {#                            <img src="{% static 'assets/img/portfolio/portfolio-5.jpg' %}" class="img-fluid" alt="">#}
-                    {#                            <div class="portfolio-links">#}
-                    {#                                <a href="{% static 'assets/img/portfolio/portfolio-5.jpg' %}"#}
-                    {#                                   data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 2"><i#}
-                    {#                                        class="bx bx-plus"></i></a>#}
-                    {#                                <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>#}
-                    {#                            </div>#}
-                    {#                        </div>#}
-                    {#                    </div>#}
-                    {##}
-                    {#                    <div class="col-lg-4 col-md-6 portfolio-item filter-app">#}
-                    {#                        <div class="portfolio-wrap">#}
-                    {#                            <img src="{% static 'assets/img/portfolio/portfolio-6.jpg' %}" class="img-fluid" alt="">#}
-                    {#                            <div class="portfolio-links">#}
-                    {#                                <a href="{% static 'assets/img/portfolio/portfolio-6.jpg' %}"#}
-                    {#                                   data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 3"><i#}
-                    {#                                        class="bx bx-plus"></i></a>#}
-                    {#                                <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>#}
-                    {#                            </div>#}
-                    {#                        </div>#}
-                    {#                    </div>#}
-                    {##}
-                    {#                    <div class="col-lg-4 col-md-6 portfolio-item filter-card">#}
-                    {#                        <div class="portfolio-wrap">#}
-                    {#                            <img src="{% static 'assets/img/portfolio/portfolio-7.jpg' %}" class="img-fluid" alt="">#}
-                    {#                            <div class="portfolio-links">#}
-                    {#                                <a href="{% static 'assets/img/portfolio/portfolio-7.jpg' %}"#}
-                    {#                                   data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 1"><i#}
-                    {#                                        class="bx bx-plus"></i></a>#}
-                    {#                                <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>#}
-                    {#                            </div>#}
-                    {#                        </div>#}
-                    {#                    </div>#}
-                    {##}
-                    {#                    <div class="col-lg-4 col-md-6 portfolio-item filter-card">#}
-                    {#                        <div class="portfolio-wrap">#}
-                    {#                            <img src="{% static 'assets/img/portfolio/portfolio-8.jpg' %}" class="img-fluid" alt="">#}
-                    {#                            <div class="portfolio-links">#}
-                    {#                                <a href="{% static 'assets/img/portfolio/portfolio-8.jpg' %}"#}
-                    {#                                   data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 3"><i#}
-                    {#                                        class="bx bx-plus"></i></a>#}
-                    {#                                <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>#}
-                    {#                            </div>#}
-                    {#                        </div>#}
-                    {#                    </div>#}
-                    {##}
-                    {#                    <div class="col-lg-4 col-md-6 portfolio-item filter-web">#}
-                    {#                        <div class="portfolio-wrap">#}
-                    {#                            <img src="{% static 'assets/img/portfolio/portfolio-9.jpg' %}" class="img-fluid" alt="">#}
-                    {#                            <div class="portfolio-links">#}
-                    {#                                <a href="{% static 'assets/img/portfolio/portfolio-9.jpg' %}"#}
-                    {#                                   data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"><i#}
-                    {#                                        class="bx bx-plus"></i></a>#}
-                    {#                                <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>#}
-                    {#                            </div>#}
-                    {#                        </div>#}
-                    {#                    </div>#}
-
                 </div>
 
             </div>
@@ -523,12 +418,12 @@
         <section id="services" class="services">
             <div class="container">
                 <div class="section-title">
-                    {% for i in service_items %}
+                    {% for i in service_part_items %}
                         <h2>
-                            {{ i.part_name }}
+                            {{ i.name }}
                         </h2>
                         <p>
-                            {{ i.part_title }}
+                            {{ i.title }}
                         </p>
                     {% endfor %}
                 </div>
@@ -536,14 +431,14 @@
                 <div class="row">
                     {% for i in service_items %}
                         <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up">
-                            <div class="icon"><i class="bi bi-briefcase"></i></div>
+                            <div class="icon"><i class="{{ i.logo }}"></i></div>
                             <h4 class="title">
                                 <a href="">
-                                    {{ i.service_name }}
+                                    {{ i.name }}
                                 </a>
                             </h4>
                             <p class="description">
-                                {{ i.service_desc }}
+                                {{ i.desc }}
                             </p>
                         </div>
                     {% endfor %}
@@ -559,8 +454,8 @@
 
                 <div class="section-title">
                     {% for i in testimonial_part_items %}
-                        <h2>{{ i.part_name }}</h2>
-                        <p>{{ i.part_title }}</p>
+                        <h2>{{ i.name }}</h2>
+                        <p>{{ i.title }}</p>
                     {% endfor %}
                 </div>
 
@@ -574,7 +469,7 @@
                                         {{ i.user_comment }}
                                         <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                                     </p>
-                                    <img class="rounded-photo testimonial-img" src="{{ i.user_img }}" alt="">
+                                    <img class="rounded-photo testimonial-img" src="{{ i.user_img.url }}" alt="">
                                     <h3>
                                         {{ i.user_name }} {{ i.user_second_name }}
                                     </h3>
@@ -584,8 +479,8 @@
                                 </div>
                             </div>
                         {% endfor %}
-                </div>
-                <div class="swiper-pagination"></div>
+                    </div>
+                    <div class="swiper-pagination"></div>
                 </div>
             </div>
         </section>
@@ -597,8 +492,8 @@
 
                 <div class="section-title">
                     {% for i in contact_part_items %}
-                        <h2>{{ i.part_name }}</h2>
-                        <p>{{ i.part_title }}</p>
+                        <h2>{{ i.name }}</h2>
+                        <p>{{ i.title }}</p>
                     {% endfor %}
                 </div>
 
@@ -610,7 +505,7 @@
                                 <div class="address">
                                     <i class="bi bi-geo-alt"></i>
                                     <h4>Location:</h4>
-                                    <p>{{ i.location_name }}</p>
+                                    <p>{{ i.address }}</p>
                                 </div>
 
 
@@ -623,7 +518,7 @@
                                 <div class="phone">
                                     <i class="bi bi-phone"></i>
                                     <h4>Call:</h4>
-                                    <p>{{ i.call }}</p>
+                                    <p>{{ i.country_code }} {{ i.phone_number }}</p>
                                 </div>
 
                                 <iframe src="{{ i.location_coordinate }}" frameborder="0"
@@ -675,24 +570,24 @@
 
 
 
-    <!-- ======= Footer ======= -->
-    <footer id="footer">
-        <div class="container">
-            <div class="copyright">
-                &copy; Copyright <strong><span>iPortfolio</span></strong>
-            </div>
-            <div class="credits">
-                <!-- All the links in the footer should remain intact. -->
-                <!-- You can delete the links only if you purchased the pro version. -->
-                <!-- Licensing information: https://bootstrapmade.com/license/ -->
-                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/ -->
-                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-            </div>
-        </div>
-    </footer><!-- End  Footer -->
-
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-            class="bi bi-arrow-up-short"></i></a>
+{#    <!-- ======= Footer ======= -->#}
+{#    <footer id="footer">#}
+{#        <div class="container">#}
+{#            <div class="copyright">#}
+{#                &copy; Copyright <strong><span>iPortfolio</span></strong>#}
+{#            </div>#}
+{#            <div class="credits">#}
+{#                <!-- All the links in the footer should remain intact. -->#}
+{#                <!-- You can delete the links only if you purchased the pro version. -->#}
+{#                <!-- Licensing information: https://bootstrapmade.com/license/ -->#}
+{#                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/ -->#}
+{#                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>#}
+{#            </div>#}
+{#        </div>#}
+{#    </footer><!-- End  Footer -->#}
+{##}
+{#    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i#}
+{#            class="bi bi-arrow-up-short"></i></a>#}
 
     <!-- Vendor JS Files -->
     <script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>

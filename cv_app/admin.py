@@ -1,29 +1,32 @@
-from aiogram.types import Contact
 from django.contrib.admin import ModelAdmin
 from django.contrib import admin
 from cv_app.models import *
-from cv_app.static_models.static_models import *
+from cv_app.static_models.info_models import *
 from cv_app.static_models.partition_models import *
 
 
 class AboutAdmin(ModelAdmin):
-    list_display = ('job_title', 'job_decs', 'city_name', 'degree')
-    # fieldsets = [
-    #     ("Basic Model", {"fields": ["job_title", "job_title111"]})
-    # ]
+    list_display = ('job_title', 'job_desc', 'degree')
 
 
 class FactAdmin(ModelAdmin):
-    list_display = ('fact_cont',)
+    list_display = ('fact_count', 'fact_logo')
 
 
 class SkillsAdmin(ModelAdmin):
-    list_display = ('skill_name', 'skill_percent')
+    list_display = ('name', 'percent')
 
 
-# class ResumeAdmin(ModelAdmin):
-#     # list_display = ('skill_name', 'skill_percent',)
-#     pass
+class SummaryAdmin(ModelAdmin):
+    list_display = ('name', 'part', 'number', 'email')
+
+
+class EducationAdmin(ModelAdmin):
+    list_display = ('name', 'place_name')
+
+
+class ExperienceAdmin(ModelAdmin):
+    list_display = ('name', 'place_name')
 
 
 class CategoryPortfolioAdmin(ModelAdmin):
@@ -31,11 +34,15 @@ class CategoryPortfolioAdmin(ModelAdmin):
 
 
 class PortfolioAdmin(ModelAdmin):
-    list_display = ('project_name',)
+    list_display = ('name', 'category', 'slug')
+
+
+class ProjectImageAdmin(ModelAdmin):
+    list_display = ('project_id', 'image')
 
 
 class ServiceAdmin(ModelAdmin):
-    list_display = ('service_name', 'service_desc')
+    list_display = ('name', 'desc')
 
 
 class TestimonialsAdmin(ModelAdmin):
@@ -45,83 +52,81 @@ class TestimonialsAdmin(ModelAdmin):
 admin.site.register(About, AboutAdmin),
 admin.site.register(Fact, FactAdmin),
 admin.site.register(Skills, SkillsAdmin),
+admin.site.register(Summary, SummaryAdmin),
+admin.site.register(Education, EducationAdmin),
+admin.site.register(Experience, ExperienceAdmin),
 admin.site.register(CategoryPortfolio, CategoryPortfolioAdmin),
 admin.site.register(Portfolio, PortfolioAdmin),
 admin.site.register(Service, ServiceAdmin),
 admin.site.register(Testimonials, TestimonialsAdmin),
 
 
-# ~~~~~~~~~~~~~~~~~ STATIC MODELS ~~~~~~~~~~~~~~~~~~~~~~~
+# ~~~~~~~~~~~~~~~~~ INFO MODELS ~~~~~~~~~~~~~~~~~~~~~~~
 class AboutMeAdmin(ModelAdmin):
-    list_display = ('my_name', 'my_second_name', 'my_age', 'my_birthday')
+    list_display = ('name', 'second_name', 'age', 'birthday')
+
+
+class ContactMeAdmin(ModelAdmin):
+    list_display = ('city',)
 
 
 class LeftSideAdmin(ModelAdmin):
-    list_display = 'left_side_name',
-
-
-class ContactAdmin(ModelAdmin):
-    list_display = ('location_name',)
+    list_display = 'twitter_link',
 
 
 admin.site.register(AboutMe, AboutMeAdmin)
 admin.site.register(LeftSide, LeftSideAdmin)
-admin.site.register(ContactMe, ContactAdmin)
-
-# admin.site.register(ContactMe, ContactMessage)
-# admin.site.register(Resume, ResumeAdmin),
-
-# class ContactMessage(ModelAdmin):
-#     list_display = ('user_comment', 'service_desc')
+admin.site.register(ContactMe, ContactMeAdmin)
 
 
 # ~~~~~~~~~~~~~~~~~~ PARTITION PART MODELS ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#
-# class AboutPartAdmin(ModelAdmin):
-#     list_display = ('part_name', 'part_title')
-#
-#
-# class FactPartAdmin(ModelAdmin):
-#     list_display = ('part_name', 'part_title')
-#
-#
-# class SkillPartAdmin(ModelAdmin):
-#     list_display = ('part_name', 'part_title')
-#
-#
-# class ResumePartAdmin(ModelAdmin):
-#     list_display = ('part_name', 'part_title')
-#
-#
-# class PortfolioPartAdmin(ModelAdmin):
-#     list_display = ('part_name', 'part_title')
-#
-#
-# class ServicePartAdmin(ModelAdmin):
-#     list_display = ('part_name', 'part_title')
-#
-#
-# class TestimonialPartAdmin(ModelAdmin):
-#     list_display = ('part_name', 'part_title')
-#
-#
-# class ContactPartAdmin(ModelAdmin):
-#     list_display = ('part_name', 'part_title')
-#
-#
-# admin.site.register(AboutPart, AboutAdmin),
-# admin.site.register(FactPart, FactAdmin),
-# admin.site.register(SkillPart, SkillsAdmin),
-# admin.site.register(ResumePart, PortfolioAdmin),
-# admin.site.register(PortfolioPart, ServiceAdmin),
-# admin.site.register(ServicePart, TestimonialsAdmin),
-# admin.site.register(TestimonialPart, TestimonialsAdmin),
-# admin.site.register(ContactPart, TestimonialsAdmin),
+
+class AboutPartAdmin(ModelAdmin):
+    list_display = ('name', 'title')
 
 
-# class BaseModelAdmin(admin.ModelAdmin):
-#     list_display = ['part_name', 'part_title']  # Add other fields as needed
-#
+class FactPartAdmin(ModelAdmin):
+    list_display = ('name', 'title')
+
+
+class SkillPartAdmin(ModelAdmin):
+    list_display = ('name', 'title')
+
+
+class ResumePartAdmin(ModelAdmin):
+    list_display = ('name', 'title')
+
+
+class ResumeBlockAdmin(ModelAdmin):
+    list_display = ('summary', 'education', 'experience')
+
+
+class PortfolioPartAdmin(ModelAdmin):
+    list_display = ('name', 'title')
+
+
+class ServicePartAdmin(ModelAdmin):
+    list_display = ('name', 'title')
+
+
+class TestimonialPartAdmin(ModelAdmin):
+    list_display = ('name', 'title')
+
+
+class ContactPartAdmin(ModelAdmin):
+    list_display = ('name', 'title')
+
+
+admin.site.register(AboutPart, AboutPartAdmin),
+admin.site.register(FactPart, FactPartAdmin),
+admin.site.register(SkillPart, SkillPartAdmin),
+admin.site.register(ResumePart, ResumePartAdmin),
+admin.site.register(ResumeBlocks, ResumeBlockAdmin),
+admin.site.register(PortfolioPart, PortfolioPartAdmin),
+admin.site.register(ServicePart, ServicePartAdmin),
+admin.site.register(TestimonialPart, TestimonialPartAdmin),
+admin.site.register(ContactPart, ContactPartAdmin),
+
 # #
 # class AboutPartAdmin(BaseModelAdmin):
 #     list_display = ['other_field1', 'other_field2']  # Add other fields specific to AboutPart
@@ -154,15 +159,13 @@ admin.site.register(ContactMe, ContactAdmin)
 # class ContactPartAdmin(BaseModelAdmin):
 #     list_display = ['other_field1', 'other_field2']  # Add other fields specific to ContactPart
 #
-#
-# # Register the admin classes with the corresponding models
 
 
-admin.site.register(AboutPart)
-admin.site.register(FactPart)
-admin.site.register(SkillPart)
-admin.site.register(ResumePart)
-admin.site.register(PortfolioPart)
-admin.site.register(ServicePart)
-admin.site.register(TestimonialPart)
-admin.site.register(ContactPart)
+# admin.site.register(AboutPart)
+# admin.site.register(FactPart)
+# admin.site.register(SkillPart)
+# admin.site.register(ResumePart)
+# admin.site.register(PortfolioPart)
+# admin.site.register(ServicePart)
+# admin.site.register(TestimonialPart)
+# admin.site.register(ContactPart)
