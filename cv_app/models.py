@@ -175,14 +175,16 @@ class Testimonials(Model):
     class Meta:
         verbose_name_plural = "Testimonial Model"
 
-# class ContactMessage(Model):
-#     name = CharField(max_length=255, null=True, blank=True)
-#     email = EmailField(null=True, blank=True)
-#     subject = CharField(max_length=255, null=True, blank=True)
-#     message = TextField(null=True, blank=True)
-#
-#     def __str__(self):
-#         return f"Name {self.name} Email {self.email}"
-#
-#     class Meta:
-#         verbose_name_plural = "Contact Model"
+
+class ContactMessage(Model):
+    name = CharField(max_length=255, null=True, blank=True)
+    email = EmailField(null=True, blank=True)
+    subject = CharField(max_length=255, null=True, blank=True)
+    message = TextField(null=True, blank=True)
+
+    def __str__(self):
+        return f"Name {self.name} Email {self.email}"
+
+    class Meta:
+        verbose_name_plural = "Contact Model"
+

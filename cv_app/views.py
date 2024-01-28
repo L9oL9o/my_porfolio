@@ -1,9 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.views.generic import ListView
 from cv_app.static_models.info_models import *
 from cv_app.static_models.partition_models import *
 from cv_app.models import *
-
+from cv_app.forms import ContactForm
 
 
 class GetObjectsView(ListView):
@@ -60,3 +61,36 @@ def get_project_detail_images(request, slug):
     return render(request, 'portfolio-details.html', context)
 
 
+def contact_view(request):
+    if request.method == 'POST':
+        # Получаем данные из формы
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        subject = request.POST.get('subject')
+        message = request.POST.get('message')
+
+        # Валидация данных (вы можете добавить свою логику валидации)
+        if not name or not email or not subject or not message:
+            return render(request, 'index.html', {'error_message': 'All fields are required'})
+
+        ContactMessage.objects.create(name=name, email=email, subject=subject, message=message)
+
+        return render(request, 'success_page.html')
+
+    return render(request, 'index.html')
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# ________________________________________________|
+# THIS METOD WILL BE USED, BUT NOW IT DIDN'T WORK |
+# ------------------------------------------------|
+# def contact_view(request):
+#     if request.method == 'POST':
+#         form = ContactForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return render(request, 'success_page.html')  # Создайте страницу успешного отправления формы
+#     else:
+#         form = ContactForm()
+#
+#     return render(request, 'index.html', {'form': form})
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

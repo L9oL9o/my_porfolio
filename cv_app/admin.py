@@ -54,6 +54,9 @@ class TestimonialsAdmin(ModelAdmin):
     list_display = ('user_name', 'user_second_name', 'user_job_name', 'user_comment')
 
 
+class GetContactAdmin(ModelAdmin):
+    list_display = ('name', 'email', 'subject')
+admin.site.register(ContactMessage, GetContactAdmin)
 
 admin.site.register(About, AboutAdmin),
 admin.site.register(Fact, FactAdmin),

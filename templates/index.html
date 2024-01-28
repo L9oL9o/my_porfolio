@@ -491,16 +491,18 @@
         <!-- ======= Contact Section ======= -->
         <section id="contact" class="contact">
             <div class="container">
-
+                {# CONTACT STATIC PART #}
                 <div class="section-title">
                     {% for i in contact_part_items %}
                         <h2>{{ i.name }}</h2>
                         <p>{{ i.title }}</p>
                     {% endfor %}
                 </div>
+                {# END CONTACT STATIC PART #}
 
+                {# CONTACT INFORMATION BLOCK #}
                 <div class="row" data-aos="fade-in">
-
+                    {# CONTACT LEFT SIDE  #}
                     <div class="col-lg-5 d-flex align-items-stretch">
                         <div class="info">
                             {% for i in contact_me_items %}
@@ -528,11 +530,24 @@
                                         allowfullscreen></iframe>
                             {% endfor %}
                         </div>
-
                     </div>
+                    {# END CONTACT LEFT SIDE #}
 
+                    {# CONTACT GET INFORMATION PART #}
                     <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
-                        <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+                        {#                        <form method="post" action="{% url 'contact_form' %}" role="form">#}
+                        {#                            {% csrf_token %}#}
+                        {#                            {% for field in form %}#}
+                        {#                                {{ field }}#}
+                        {#                            {% endfor %}#}
+                        {#                            <button type="submit">Submit</button>#}
+                        {#                        </form>#}
+                        <form action="{% url 'contact_form' %}" method="post" role="form" class="php-email-form">
+                            {% csrf_token %}
+                            {% if error_message %}
+                                <p style="color: red;">{{ error_message }}</p>
+                            {% endif %}
+
                             <div class="row">
                                 <div class="form-group col-md-6">
                                     <label for="name">Your Name</label>
@@ -557,39 +572,42 @@
                                 <div class="sent-message">Your message has been sent. Thank you!</div>
                             </div>
                             <div class="text-center">
-                                <button type="submit">Send Message</button>
+                                <button type="submit" {% url 'contact_form' %}>
+                                    Send Message
+                                </button>
                             </div>
                         </form>
                     </div>
 
+                    {# END CONTACT GET INFORMATION PART #}
                 </div>
-
+                {# END CONTACT INFORMATION BLOCK #}
             </div>
         </section>
         <!-- End Contact Section -->
+    </main>
+    <!-- End #main -->
 
-    </main><!-- End #main -->
 
 
-
-{#    <!-- ======= Footer ======= -->#}
-{#    <footer id="footer">#}
-{#        <div class="container">#}
-{#            <div class="copyright">#}
-{#                &copy; Copyright <strong><span>iPortfolio</span></strong>#}
-{#            </div>#}
-{#            <div class="credits">#}
-{#                <!-- All the links in the footer should remain intact. -->#}
-{#                <!-- You can delete the links only if you purchased the pro version. -->#}
-{#                <!-- Licensing information: https://bootstrapmade.com/license/ -->#}
-{#                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/ -->#}
-{#                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>#}
-{#            </div>#}
-{#        </div>#}
-{#    </footer><!-- End  Footer -->#}
-{##}
-{#    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i#}
-{#            class="bi bi-arrow-up-short"></i></a>#}
+    {#    <!-- ======= Footer ======= -->#}
+    {#    <footer id="footer">#}
+    {#        <div class="container">#}
+    {#            <div class="copyright">#}
+    {#                &copy; Copyright <strong><span>iPortfolio</span></strong>#}
+    {#            </div>#}
+    {#            <div class="credits">#}
+    {#                <!-- All the links in the footer should remain intact. -->#}
+    {#                <!-- You can delete the links only if you purchased the pro version. -->#}
+    {#                <!-- Licensing information: https://bootstrapmade.com/license/ -->#}
+    {#                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/ -->#}
+    {#                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>#}
+    {#            </div>#}
+    {#        </div>#}
+    {#    </footer><!-- End  Footer -->#}
+    {##}
+    {#    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i#}
+    {#            class="bi bi-arrow-up-short"></i></a>#}
 
     <!-- Vendor JS Files -->
     <script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
