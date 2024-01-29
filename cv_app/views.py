@@ -1,10 +1,10 @@
-from django.shortcuts import render, redirect
-from django.urls import reverse
+from django.shortcuts import render
 from django.views.generic import ListView
+
+from cv_app.models import *
 from cv_app.static_models.info_models import *
 from cv_app.static_models.partition_models import *
-from cv_app.models import *
-from cv_app.forms import ContactForm
+from root.settings import MEDIA_URL
 
 
 class GetObjectsView(ListView):
@@ -22,9 +22,10 @@ class GetObjectsView(ListView):
         context['education_items'] = Education.objects.all()
         context['experience_items'] = Experience.objects.all()
         context['category_portfolio_items'] = CategoryPortfolio.objects.all()
-        context['portfolio_items'] = Portfolio.objects.all()
+        context['portfolio_items'] = Portfolio.objects.values('category__slug', 'slug', 'img')
         context['service_items'] = Service.objects.all()
         context['testimonials_item'] = Testimonials.objects.all()
+        context['full_url'] = self.request.build_absolute_uri(MEDIA_URL)
 
         # STATIC MODELS
         context['about_me_items'] = AboutMe.objects.all()
@@ -46,18 +47,12 @@ class GetObjectsView(ListView):
 
 
 def get_project_details(request, slug):
-    get_id = Portfolio.objects.get(slug=slug)
+    portfolio = Portfolio.objects.get(slug=slug)
     context = {
-        'project_details_item': Project.objects.filter(portfolio=get_id.id)
+        'project_details_item': [portfolio],
+        'project_details_images_item': portfolio.portfolio_images.all()
     }
-    return render(request, 'portfolio-details.html', context)
 
-
-def get_project_detail_images(request, slug):
-    get_id = Portfolio.objects.get(slug=slug)
-    context = {
-        'project_details_images_item': ProjectImages.objects.filter(slug=get_id.id)
-    }
     return render(request, 'portfolio-details.html', context)
 
 

@@ -1,5 +1,6 @@
-from django.contrib.admin import ModelAdmin
 from django.contrib import admin
+from django.contrib.admin import ModelAdmin, StackedInline
+
 from cv_app.models import *
 from cv_app.static_models.info_models import *
 from cv_app.static_models.partition_models import *
@@ -33,8 +34,18 @@ class CategoryPortfolioAdmin(ModelAdmin):
     list_display = ('title', 'slug')
 
 
+class PortfolioImagesItemTabular(StackedInline):
+    model = PortfolioImages
+    max_num = 3
+    min_num = 3
+    extra = 3
+
+
 class PortfolioAdmin(ModelAdmin):
     list_display = ('name', 'category', 'slug')
+    inlines = [
+        PortfolioImagesItemTabular,
+    ]
 
 
 class ProjectImageAdmin(ModelAdmin):
@@ -56,6 +67,8 @@ class TestimonialsAdmin(ModelAdmin):
 
 class GetContactAdmin(ModelAdmin):
     list_display = ('name', 'email', 'subject')
+
+
 admin.site.register(ContactMessage, GetContactAdmin)
 
 admin.site.register(About, AboutAdmin),
@@ -67,8 +80,8 @@ admin.site.register(Experience, ExperienceAdmin),
 admin.site.register(CategoryPortfolio, CategoryPortfolioAdmin),
 admin.site.register(Portfolio, PortfolioAdmin),
 admin.site.register(Service, ServiceAdmin),
-admin.site.register(Project, ProjectImageAdmin),
-admin.site.register(ProjectImages, ProjectImageAdmin),
+# admin.site.register(Project, ProjectImageAdmin),
+admin.site.register(PortfolioImages, ProjectImageAdmin),
 
 
 # admin.site.register(Testimonials, TestimonialsAdmin),

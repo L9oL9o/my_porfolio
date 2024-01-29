@@ -100,7 +100,6 @@
                     <li>Portfoio Details</li>
                 </ol>
             </div>
-
         </div>
     </section>
     <!-- End Breadcrumbs -->
@@ -129,14 +128,14 @@
                         <h3>Project information</h3>
                         {# RIGHT SIDE SMALL DESCRIPTIONS #}
                         <ul>
-                            {% for i in project_details_item %}
-                                <li><strong>Category</strong>: {{ i.name }} </li>
-                                <li><strong>Client</strong>: {{ i.client }} </li>
-                                <li><strong>Project date</strong>: {{ i.date }} </li>
+{#                            {% for i in project_details_item %}#}
+                                <li><strong>Category</strong>: {{ project_details_item.0.name }} </li>
+                                <li><strong>Client</strong>: {{ project_details_item.0.client }} </li>
+                                <li><strong>Project date</strong>: {{ project_details_item.0.date }} </li>
                                 <li><strong>Project URL</strong>: 
-                                    <a href="{{ i.url }}" target="_blank" style="color: red">Click here</a>
+                                    <a href="{{ project_details_item.url }}" target="_blank" style="color: red">Click here</a>
                                 </li>
-                            {% endfor %}
+{#                            {% endfor %}#}
                         </ul>
                     </div>
                     {# PROJECT DESCRIPTIONS #}
