@@ -65,9 +65,17 @@ class Resume(Model):
 
 
 class Portfolio(Model):
+    category_type = [
+        ("filter-active", "filter-active"),
+        (".filter-app", ".filter-app"),
+        (".filter-card", ".filter-card"),
+        (".filter-web", ".filter-web"),
+    ]
+
     project_name = CharField(max_length=55, null=True, blank=True)
     portfolio_link = URLField(blank=True, null=True)
-    img = ImageField(upload_to='static/images/portfolio')
+    portfolio_img = ImageField(upload_to='static/images/portfolio')
+    portfolio_category = CharField(max_length=55, choices=category_type)
 
     def __str__(self):
         return self.project_name

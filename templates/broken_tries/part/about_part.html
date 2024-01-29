@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+    {% load static %}
+{% block about %}
+    <!-- ======= About Section ======= -->
+            <section id="about" class="about">
+                <div class="container">
+
+                    <div class="section-title">
+                        {% for i in facts_item %}
+                            <h2>{{ i.part_name }}</h2>
+                            <p>{{ i.job_title }}</p>
+                        {% endfor %}
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-4" data-aos="fade-right">
+                            <img src="{% static 'assets/img/profile-img.jpg' %}" class="img-fluid" alt="">
+                        </div>
+                        <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
+                            {% for i in about_items %}
+                                <h3>{{ i.job_name }}</h3>
+
+                                <p class="fst-italic">
+                                    {{ i.job_title }}
+                                </p>
+                            {% endfor %}
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    {% for i in about_items %}
+                                        <ul>
+                                            <li>
+                                                <i class="bi bi-chevron-right"></i>
+                                                <strong>Birthday:</strong>
+                                                <span>
+                                                    {{ i.birth_date }}
+                                            </span>
+                                            </li>
+                                            <li>
+                                                <i class="bi bi-chevron-right"></i> <strong>Website:</strong>
+                                                <span>
+                                                    <a href="{{ i.website }}" target="_blank">Check GITHUB</a>
+                                            </span></li>
+                                            <li>
+                                                <i class="bi bi-chevron-right"></i>
+                                                <strong>Phone:</strong>
+                                                <span>
+                                                    {% for i in about_items %}
+                                                       {{ i.phone_code }} {{ i.phone_number }}
+                                                    {% endfor %}
+                                                </span>
+                                            </li>
+                                            <li><i class="bi bi-chevron-right"></i> <strong>City:</strong>
+                                                <span>
+                                                    {% for i in about_items %}
+                                                        {{ i.city }}
+                                                    {% endfor %}
+                                                </span>
+                                            </li>
+                                        </ul>
+                                    {% endfor %}
+                                </div>
+                                <div class="col-lg-6">
+                                    {% for i in about_items %}
+                                        <ul>
+                                            <li><i class="bi bi-chevron-right"></i>
+                                                <strong>Age:</strong>
+                                                <span>
+                                                    {% for i in about_items %}
+                                                        {{ i.age }}
+                                                    {% endfor %}
+                                                </span>
+                                            </li>
+                                            <li><i class="bi bi-chevron-right"></i>
+                                                <strong>Degree:</strong>
+                                                <span>
+                                                    {% for i in about_items %}
+                                                        {{ i.degree }}
+                                                    {% endfor %}
+                                                </span>
+                                            </li>
+                                            <li><i class="bi bi-chevron-right"></i>
+                                                <strong>PhEmailone:</strong>
+                                                <span>
+                                                    {% for i in about_items %}
+                                                        {{ i.email_field }}
+                                                    {% endfor %}
+                                                </span>
+                                            </li>
+                                            <li><i class="bi bi-chevron-right"></i>
+                                                <strong>Freelance:</strong>
+                                                <span>
+                                                    {% for i in about_items %}
+                                                        {{ i.job_type }}
+                                                    {% endfor %}
+                                                </span></li>
+                                        </ul>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <p>
+                                {% for i in about_items %}
+                                    {{ i.about_job }}
+                                {% endfor %}
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+    <!-- End About Section -->
+{% endblock %}
