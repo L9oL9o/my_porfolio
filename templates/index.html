@@ -6,8 +6,8 @@
     <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
     <!-- ======= End mobile nav toggle button ======= -->
 
-
-    <style>
+    {% for i in about_me_items %}
+        <style>
         .rounded-photo {
             border-radius: 50%;
             width: 100px; /* Adjust the width as needed */
@@ -15,12 +15,22 @@
             object-fit: cover; /* Maintain aspect ratio while covering the container */
         }
 
-        .hero {
-
+        .hero-img {
+            {% for i in about_me_items %}
+                background-image: url('{{ i.background_img }}');
+            {% endfor %}
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
-
-    </style>
-    <!-- ======= Header ======= -->
+        }
+    {% endfor %}
+</style>
+    <!-- ======= LEFT SIDE ======= -->
     <header id="header">
         <div class="d-flex flex-column">
             <div class="profile">
@@ -40,14 +50,21 @@
                 </h1>
                 <div class="social-links mt-3 text-center">
                     {% for i in left_side_items %}
-                        <a href="{{ i.twitter_link }}" class="twitter" target="_blank"><i
-                                class="bx bxl-twitter"></i></a>
-                        <a href="{{ i.facebook_link }}" class="facebook" target="_blank"><i class="bx bxl-facebook"></i></a>
-                        <a href="{{ i.instagram_link }}" class="instagram" target="_blank"><i
-                                class="bx bxl-instagram"></i></a>
-                        <a href="{{ i.skype_link }}" class="google-plus" target="_blank"><i
-                                class="bx bxl-skype"></i></a>
-                        <a href="{{ i.linkedin_link }}" class="linkedin" target="_blank"><i class="bx bxl-linkedin"></i></a>
+                        <a href="{{ i.telegram_link }}" class="twitter" target="_blank">
+                            <i class="bx bxl-telegram"></i>
+                        </a>
+                        <a href="{{ i.github_link }}" class="facebook" target="_blank">
+                            <i class="bx bxl-github"></i>
+                        </a>
+                        <a href="{{ i.instagram_link }}" class="instagram" target="_blank">
+                            <i class="bx bxl-instagram"></i>
+                        </a>
+                        <a href="{{ i.facebook_link }}" class="google-plus" target="_blank">
+                            <i class="bx bxl-facebook"></i>
+                        </a>
+                        <a href="{{ i.linkedin_link }}" class="linkedin" target="_blank">
+                            <i class="bx bxl-linkedin"></i>
+                        </a>
                     {% endfor %}
                 </div>
             </div>
@@ -71,26 +88,21 @@
             </nav><!-- .nav-menu -->
         </div>
     </header>
-    <!-- End Header -->
+    <!-- End LEFT SIDE -->
 
     <!-- ======= Hero Section ======= -->
-    <section id="hero" class="d-flex flex-column justify-content-center align-items-center"
-             style="    width: 100%;
-    height: 100vh;
-    background: url(" ../img/hero-bg.jpg") top center;
-    background-size: cover;">
-    <div class="hero-container" data-aos="fade-in">
-        {% for i in about_me_items %}
-            <img src="{{ i.background_img }}" alt="">
-            <h1>{{ i.name }}</h1>
-            <h1>{{ i.second_name }}</h1>
-        {% endfor %}
-        {% for i in about_items %}
-            <p> I work with
-                <span class="typed" data-typed-items="{{ i.job_desc }}"></span>
-            </p>
-        {% endfor %}
-    </div>
+    <section {# id="hero-img"  #} class="hero-img d-flex flex-column justify-content-center align-items-center">
+        <div class="hero-container" data-aos="fade-in">
+            {% for i in about_me_items %}
+                <h1 style="color: whitesmoke">{{ i.name }}</h1>
+                <h1 style="color: whitesmoke">{{ i.second_name }}</h1>
+            {% endfor %}
+            {% for i in about_items %}
+                <h4 style="color: whitesmoke"> I work with
+                    <span class="typed" data-typed-items="{{ i.job_desc }}"></span>
+                </h4>
+            {% endfor %}
+        </div>
     </section>
     <!-- End Hero -->
 
@@ -409,8 +421,8 @@
                             <div class="portfolio-wrap">
                                 <img src="{{ full_url }}{{ i.img }}" class="img-fluid" alt="">
                                 <div class="portfolio-links">
-                                    <a href="{{ i.img.url }}"
-                                       data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 1">
+                                    <a href="{{ i.img }}"
+                                       data-gallery="portfolioGallery" class="portfolio-lightbox">
                                         <i class="bx bx-plus"></i>
                                     </a>
                                     <a href="{% url 'detail' i.slug %}" title="More Details" target="_blank">

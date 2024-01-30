@@ -177,7 +177,7 @@ class Testimonials(Model):
         verbose_name_plural = "Testimonial Model"
 
 
-class ContactMessage(Model):
+class GetContactMessage(Model):
     name = CharField(max_length=255, null=True, blank=True)
     email = EmailField(null=True, blank=True)
     subject = CharField(max_length=255, null=True, blank=True)
@@ -187,4 +187,4 @@ class ContactMessage(Model):
         return f"Name {self.name} Email {self.email}"
 
     class Meta:
-        verbose_name_plural = "Contact Model"
+        verbose_name_plural = "1Get Contact Model"

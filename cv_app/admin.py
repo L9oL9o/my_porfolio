@@ -58,18 +58,18 @@ class ProjectImageAdmin(ModelAdmin):
 
 
 class ServiceAdmin(ModelAdmin):
-    list_display = ('name', 'desc')
+    list_display = ('name', 'desc', 'logo')
 
 
 class TestimonialsAdmin(ModelAdmin):
     list_display = ('user_name', 'user_second_name', 'user_job_name', 'user_comment')
 
 
-class GetContactAdmin(ModelAdmin):
+class GetContactMessageAdmin(ModelAdmin):
     list_display = ('name', 'email', 'subject')
 
 
-admin.site.register(ContactMessage, GetContactAdmin)
+admin.site.register(GetContactMessage, GetContactMessageAdmin)
 
 admin.site.register(About, AboutAdmin),
 admin.site.register(Fact, FactAdmin),
@@ -84,7 +84,7 @@ admin.site.register(Service, ServiceAdmin),
 admin.site.register(PortfolioImages, ProjectImageAdmin),
 
 
-# admin.site.register(Testimonials, TestimonialsAdmin),
+admin.site.register(Testimonials, TestimonialsAdmin),
 
 
 # ~~~~~~~~~~~~~~~~~ INFO MODELS ~~~~~~~~~~~~~~~~~~~~~~~
@@ -97,7 +97,7 @@ class ContactMeAdmin(ModelAdmin):
 
 
 class LeftSideAdmin(ModelAdmin):
-    list_display = 'twitter_link',
+    list_display = 'telegram_link',
 
 
 admin.site.register(AboutMe, AboutMeAdmin)

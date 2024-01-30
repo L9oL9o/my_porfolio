@@ -9,6 +9,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -16,6 +17,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'debug_toolbar',
+    'ckeditor',
     'cv_app'
 ]
 
@@ -29,6 +31,21 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
 ]
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'toolbar_Custom': [
+            ['Bold', 'Italic', 'Underline', 'Link', 'Unlink', 'NumberedList', 'BulletedList', 'Image'],
+        ],
+        'height': 300,
+        'width': 800,
+    },
+}
+
+# CKEditor Uploader settings
+CKEDITOR_UPLOAD_SLUGIFY_FILENAME = True
+CKEDITOR_ALLOW_NONIMAGE_FILES = False
 
 if DEBUG:
     import debug_toolbar
@@ -103,11 +120,9 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
-
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

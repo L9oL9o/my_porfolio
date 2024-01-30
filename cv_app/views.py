@@ -4,7 +4,6 @@ from django.views.generic import ListView
 from cv_app.models import *
 from cv_app.static_models.info_models import *
 from cv_app.static_models.partition_models import *
-from root.settings import MEDIA_URL
 
 
 class GetObjectsView(ListView):
@@ -22,10 +21,11 @@ class GetObjectsView(ListView):
         context['education_items'] = Education.objects.all()
         context['experience_items'] = Experience.objects.all()
         context['category_portfolio_items'] = CategoryPortfolio.objects.all()
+
         context['portfolio_items'] = Portfolio.objects.values('category__slug', 'slug', 'img')
+
         context['service_items'] = Service.objects.all()
         context['testimonials_item'] = Testimonials.objects.all()
-        context['full_url'] = self.request.build_absolute_uri(MEDIA_URL)
 
         # STATIC MODELS
         context['about_me_items'] = AboutMe.objects.all()
@@ -52,23 +52,31 @@ def get_project_details(request, slug):
         'project_details_item': [portfolio],
         'project_details_images_item': portfolio.portfolio_images.all()
     }
-
     return render(request, 'portfolio-details.html', context)
+
+
+# def get_project_categories(request, slug):
+#     portfolio = CategoryPortfolio.objects.get(slug=slug)
+#     context = {
+#         # "project_categories_item": Portfolio.objects.filter(category=portfolio.id)
+#         "project_categories_item": Portfolio.objects.filter(category=portfolio)
+#     }
+#     render(request, 'index.html', context)
+
+
 
 
 def contact_view(request):
     if request.method == 'POST':
-        # Получаем данные из формы
         name = request.POST.get('name')
         email = request.POST.get('email')
         subject = request.POST.get('subject')
         message = request.POST.get('message')
 
-        # Валидация данных (вы можете добавить свою логику валидации)
         if not name or not email or not subject or not message:
             return render(request, 'index.html', {'error_message': 'All fields are required'})
 
-        ContactMessage.objects.create(name=name, email=email, subject=subject, message=message)
+        GetContactMessage.objects.create(name=name, email=email, subject=subject, message=message)
 
         return render(request, 'success_page.html')
 
