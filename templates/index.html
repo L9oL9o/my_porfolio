@@ -223,7 +223,7 @@
                         </div>
                         <p>
                             {% for i in about_items %}
-                                {{ i.about_job }}
+                                {{ i.detail_description }}
                             {% endfor %}
                         </p>
                     </div>
@@ -567,7 +567,7 @@
                         <form action="{% url 'contact_form' %}" method="post" role="form" class="php-email-form">
                             {% csrf_token %}
                             {% if error_message %}
-                                <p style="color: red;">{{ error_message }}</p>
+                                <p style="color: blue;">{{ error_message }}</p>
                             {% endif %}
 
                             <div class="row">

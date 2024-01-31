@@ -26,6 +26,8 @@ class About(Model):
     degree = CharField(max_length=255, choices=DEGREE_CHOICES, null=True, blank=True)
     job_type = CharField(max_length=255, choices=JOB_TYPE, null=True, blank=True)
     about = CharField(max_length=255, null=True, blank=True)
+    detail_description = TextField(null=True, blank=True)
+
 
     def __str__(self):
         return self.job_title
